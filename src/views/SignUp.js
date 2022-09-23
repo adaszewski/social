@@ -16,44 +16,40 @@ const SignUp = () => {
     const target = e.target
     const name = target.name
     console.log(target.value);
-    
+
     setFormData({
       ...formData,
       [name]: target.value
     })
+    console.log(SignUp)
   }
 
+  let newUser = {
+    username: "username",
+    email: "email",
+    password: "password"
+  }
+console.log(newUser)
 
-  // const { register, handleSubmit, formState: { errors } } = useForm();
-  // const onSubmit = data => console.log(data);
-  // console.log(errors);
+const headers = {
+  'Content-Type': 'application/json',
+  'Accept': 'application/json'
+}
 
-  // let newUser = {
-  //   username: "username",
-  //   email: "email",
-  //   password: "password",
-  // }
+axios.post(
+      'http://akademia108.pl/api/social-app/user/signup', 
+      JSON.stringify(newUser),
+      { 'headers': headers })
+  .then((req) => {
 
-  //  const headers = {
-  //     'Content-Type': 'application/json',
-  //     'Accept': 'application/json'
-  // }
+      // your code :)      
 
-  // axios.post(
-  //         'http://akademia108.pl/api/social-app/user/signup', 
-  //         JSON.stringify(newUser),
-  //         { 'headers': headers })
-  //     .then((req) => {
+      console.log(req.data);  
+  }).catch((error) => {
+      console.error(error);
+  })
 
-  //         // your code :)      
-
-  //         console.log(req.data);  
-  //     }).catch((error) => {
-  //         console.error(error);
-  //     })
-
-
-
+  
   return (
     <form >
       <h2> Formularz rejestracji nowego użytkownika</h2>
@@ -62,6 +58,7 @@ const SignUp = () => {
       <input onChange={handleInputChange} type="password" name="password" placeholder="Hasło (min. 8 znaków)" /><label> hasło</label><br></br>
       <input onChange={handleInputChange} type="password" name="repeatPassword" placeholder="Powtórz hasło" /><label> powtórz hasło</label><br></br>
       <button input type="submit"> Zarejestruj się </button>
+      
 
     </form>
   );
