@@ -1,0 +1,34 @@
+img {
+    margin-top: 10px;
+    width: 50px;
+    height: 50px;
+    display: flex;
+    text-align-last: auto;
+
+
+}
+
+.user {
+    color: blue;
+    margin-left: 20px;
+    font-size: 22px;
+    display: inline;
+    text-align-last: left;
+    align-content: flex-end;
+    color: blanchedalmond;
+}
+
+.content {
+    margin-left: 20%;
+}
+
+.post {
+    border-style: dotted;
+    margin-bottom: 15px;
+    width: 70%;
+    align-items: center;
+    display: flex;
+    margin-left: ;
+    background-color: blue;
+    color:beige;
+}

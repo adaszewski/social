@@ -4,35 +4,33 @@ import axios from "axios";
 import Post from "../components/Post";
 
 
-
-
 const Home = () => {
-const [posts, setPosts ] = useState([]) 
+    const [posts, setPosts] = useState([])
 
-const getLatestPosts = (props) => {
-    axios.post("https://akademia108.pl/api/social-app/post/latest")
-    .then((req) => { 
-        setPosts(req.data)
+    const getLatestPosts = () => {
+        axios.post("https://akademia108.pl/api/social-app/post/latest")
+            .then((req) => {
+                setPosts(req.data);
+            })
+            .catch((error) => {
+                console.error(error);
+            })
+    }
 
-          console.log(req.data)
-    }) 
-    .catch((error) => console.error(error))
-} 
+    useEffect(() => {
+        getLatestPosts()
+    }, []);
 
-useEffect(() => {
-    getLatestPosts()
-    
-}, [])
-
-console.log(getLatestPosts)
-
-
+console.log(posts)
 
     return (
         <div className="home">
-            <h2> Home</h2>
-         <Post />
-        </div>
+            <div className="socialPost">
+                {posts.map((post) => {
+                    return <Post post={post} />;
+                })}
+            </div>
+        </div >
     )
 }
 export default Home; 
