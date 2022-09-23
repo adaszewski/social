@@ -1,8 +1,9 @@
 import React from 'react';
 import { useState } from 'react';
 import axios from 'axios';
+import { Navigate } from 'react-router-dom';
 
-const LoginForm = () => {
+const LoginForm = (props) => {
   const [formData, setFormData] = useState({
     username: '',
     password: ''
@@ -24,7 +25,7 @@ const LoginForm = () => {
   const handleSubmit = (e) => {
 
     e.preventDefault()
-    let newUser = {
+    let user = {
       username: formData.username,
       password: formData.password,
     }
@@ -42,37 +43,38 @@ const LoginForm = () => {
     axios
       .post(
         "http://akademia108.pl/api/social-app/user/login",
-        JSON.stringify(newUser),
-        { axiosConfig }
+        JSON.stringify(user),
+        axiosConfig
       )
       .then((req) => {
         let reqData = req.data;
         console.log(reqData);
-        // if (Array.isArray(reqData.username)) {
-        //   setLoginMessage(reqData.username[0]);
-        // } else if (Array.isArray(reqData.password)) {
-        //   setLoginMessage(reqData.password[0]);
-        // } else if (reqData.error) {
-        //   setLoginMessage("Nieprawidłowa nazwa użytkownika lub hasło");
-        // } else {
-        //   setLoginMessage("");
-        //   localStorage.setItem("user", JSON.stringify(reqData));
-        // }
+        if (Array.isArray(reqData.username)) {
+          setLoginMessage(reqData.username[0]);
+        } else if (Array.isArray(reqData.password)) {
+          setLoginMessage(reqData.password[0]);
+        } else if (reqData.error) {
+          setLoginMessage("Nieprawidłowa nazwa użytkownika lub hasło");
+        } else {
+          setLoginMessage("");
+          localStorage.setItem("user", JSON.stringify(reqData));
+        }
       })
-      // .catch((error) => {
-      //   console.error(error);
-      // });
+      .catch((error) => {
+        console.error(error);
+      });
   };
 
   return (
     <form onSubmit={handleSubmit} >
       <h2> Formularz logowania </h2>
+      {props.user && <Navigate to="/" />}
 
       <input onChange={handleInputChange} name="username" /><label> nazwa użytkownika</label><br></br>
       <input onChange={handleInputChange} name="password" /><label> hasło</label><br></br>
       <button> Zaloguj się </button>
-      <h2>{loginMessage}</h2>
-      <h3> logujesz sie jako <span>{formData.username} </span></h3>
+      {loginMessage && <h2>{loginMessage}</h2>}
+     
     </form>
 
   );
