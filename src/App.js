@@ -1,17 +1,19 @@
 import React from 'react';
 import './App.css';
+import { useState } from 'react';
 import AppNav from './components/AppNav';
 import AppRoutes from './routes/AppRoutes';
-// import Home from './views/Home';
-// import Login from './views/Login';
-// import SignUp from './views/SignUp';
 
 
-function App() {
+const App = (props) => {
+
+  const [user, setUser] = useState((JSON.parse(localStorage.getItem('user'))))
+
+
   return (
     <div className="App">
-      <AppNav />
-      <AppRoutes />
+      <AppNav user={user} setUser={setUser} />
+      <AppRoutes user={user} setUser={setUser} />
     </div>
   );
 }

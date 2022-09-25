@@ -27,7 +27,7 @@ console.log(posts)
         <div className="home">
             <div className="socialPost">
                 {posts.map((post) => {
-                    return <Post post={post} />;
+                return <Post post={post} key={post.id} />;
                 })}
             </div>
         </div >

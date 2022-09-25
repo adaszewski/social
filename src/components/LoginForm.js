@@ -57,7 +57,9 @@ const LoginForm = (props) => {
           setLoginMessage("Nieprawidłowa nazwa użytkownika lub hasło");
         } else {
           setLoginMessage("");
+          props.setUser(reqData);
           localStorage.setItem("user", JSON.stringify(reqData));
+
         }
       })
       .catch((error) => {
@@ -74,7 +76,7 @@ const LoginForm = (props) => {
       <input onChange={handleInputChange} name="password" /><label> hasło</label><br></br>
       <button> Zaloguj się </button>
       {loginMessage && <h2>{loginMessage}</h2>}
-     
+
     </form>
 
   );

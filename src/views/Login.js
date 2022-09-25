@@ -2,11 +2,13 @@ import React from 'react';
 import LoginForm from '../components/LoginForm';
 
 
+const Login = (props) => {
+  
 
-
-const Login = () => {
     return (
-        <LoginForm />
+        <LoginForm user={props.user} setUser={props.setUser} />
+
+
     )
 }
 

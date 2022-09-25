@@ -1,34 +1,41 @@
 img {
     margin-top: 10px;
-    width: 50px;
-    height: 50px;
+    width: 70px;
+    height: 70px;
     display: flex;
-    text-align-last: auto;
-
-
+    align-self: flex-start
 }
+
+
 
 .user {
     color: blue;
-    margin-left: 20px;
+    margin-left:5px;
+    margin-bottom: 5px;
+    padding: 5px;
     font-size: 22px;
-    display: inline;
-    text-align-last: left;
-    align-content: flex-end;
+    display: flex;
+    text-align-last: right;
+    align-self: flex-start;
     color: blanchedalmond;
 }
 
 .content {
-    margin-left: 20%;
+    margin-left: 5%;
+
 }
 
 .post {
     border-style: dotted;
-    margin-bottom: 15px;
+    margin-bottom: 35px;
     width: 70%;
     align-items: center;
     display: flex;
-    margin-left: ;
+    padding: 10px;
     background-color: blue;
-    color:beige;
+    color: beige;
+}
+
+.post:hover {
+    background-color: red;
 }
