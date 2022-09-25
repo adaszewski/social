@@ -1,0 +1,10 @@
+form {
+    height: 80%;
+    width: 60%;
+    background-color: cadetblue;
+}
+
+input {
+    margin: 5px;
+    padding-top: 10px;
+}
