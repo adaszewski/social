@@ -22,17 +22,18 @@ const Home = () => {
         getLatestPosts()
     }, []);
 
-    console.log(posts)
+    // console.log(posts)
 
     const getNextPosts = (e) => {
-        e.preventDefault()
-        let postDate = { date: "2020-03-05T07:02:14.000000Z" }
 
-        axios.post("https://akademia108.pl/api/social-app/post/newer-then",
-            JSON.stringify(postDate)
+
+        axios.post("https://akademia108.pl/api/social-app/post/older-then",
+            { date: posts[posts.length - 1].created_at }
         )
             .then((req) => {
-                setPosts(req.data);
+                // console.log(posts)
+                let reqData = req.data
+                setPosts(posts.concat(reqData));
             })
             .catch((error) => {
                 console.error(error);
@@ -44,14 +45,13 @@ const Home = () => {
     }, []);
 
     console.log(posts)
-
-
     return (
         <div className="home">
             <div className="socialPost">
                 {posts.map((post) => {
                     return <Post post={post} key={post.id} />;
                 })}
+
                 <button onClick={getNextPosts}> Załaduj więcej postów</button>
             </div>
         </div >

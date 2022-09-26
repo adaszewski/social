@@ -1,6 +1,7 @@
 import { Route, Routes } from "react-router-dom";
 import Home from "../views/Home";
 import Login from "../views/Login";
+import NewPost from "../views/NewPost";
 import SignUp from "../views/SignUp";
 
 const AppRoutes = (props) => {
@@ -9,6 +10,7 @@ const AppRoutes = (props) => {
             <Route path="/" element={<Home user={props.user} />} />
             <Route path="login" element={<Login user={props.user} setUser={props.setUser} />} />
             <Route path="signup" element={<SignUp user={props.user} />} />
+            <Route path="newpost" element={<NewPost user={props.user} />} />
         </Routes>
     )
 }

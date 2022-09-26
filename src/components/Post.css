@@ -39,3 +39,7 @@ img {
 .post:hover {
     background-color: red;
 }
+
+.date {
+    text-align-last: left;
+}

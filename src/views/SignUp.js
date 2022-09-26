@@ -1,7 +1,6 @@
 import React from 'react';
 import { useState } from 'react';
-// import { useForm } from 'react-hook-form';
-import { axios } from "axios";
+import axios from "axios";
 
 
 const SignUp = () => {
@@ -29,27 +28,29 @@ const SignUp = () => {
     email: "email",
     password: "password"
   }
-console.log(newUser)
+  console.log(newUser)
 
-const headers = {
-  'Content-Type': 'application/json',
-  'Accept': 'application/json'
-}
+  const [signMessage, setSignMessage] = useState("");
 
-axios.post(
-      'http://akademia108.pl/api/social-app/user/signup', 
-      JSON.stringify(newUser),
-      { 'headers': headers })
-  .then((req) => {
+  let axiosConfig = {
+    "headers": {
+      "Content-Type": 'application/json',
+      "Accept": 'application/json',
+    }
+  };
 
-      // your code :)      
-
-      console.log(req.data);  
-  }).catch((error) => {
+  axios.post(
+    'http://akademia108.pl/api/social-app/user/signup',
+    JSON.stringify(newUser),
+    axiosConfig
+  )
+    .then((req) => {
+      console.log(req.data);
+    }).catch((error) => {
       console.error(error);
-  })
+    })
 
-  
+
   return (
     <form >
       <h2> Formularz rejestracji nowego użytkownika</h2>
@@ -58,7 +59,7 @@ axios.post(
       <input onChange={handleInputChange} type="password" name="password" placeholder="Hasło (min. 8 znaków)" /><label> hasło</label><br></br>
       <input onChange={handleInputChange} type="password" name="repeatPassword" placeholder="Powtórz hasło" /><label> powtórz hasło</label><br></br>
       <button input type="submit"> Zarejestruj się </button>
-      
+
 
     </form>
   );

@@ -51,9 +51,9 @@ const LoginForm = (props) => {
         let reqData = req.data;
         console.log(reqData);
         if (Array.isArray(reqData.username)) {
-          setLoginMessage(reqData.username[0]);
+          setLoginMessage("Pole nazwa użytkownika jest wymagane");
         } else if (Array.isArray(reqData.password)) {
-          setLoginMessage(reqData.password[0]);
+          setLoginMessage("Pole hasło jest wymagane");
         } else if (reqData.error) {
           setLoginMessage("Nieprawidłowa nazwa użytkownika lub hasło");
         } else {
@@ -74,7 +74,7 @@ const LoginForm = (props) => {
       {props.user && <Navigate to="/" />}
 
       <input onChange={handleInputChange} name="username" /><label> nazwa użytkownika</label><br></br>
-      <input onChange={handleInputChange} name="password" /><label> hasło</label><br></br>
+      <input onChange={handleInputChange} type="passowrd" name="password" /><label> hasło</label><br></br>
       <button> Zaloguj się </button>
       {loginMessage && <h2>{loginMessage}</h2>}
 

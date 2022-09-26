@@ -17,6 +17,10 @@ const Post = (props) => {
                     {props.post.content}
                 </p>
             </div>
+
+            <div className='date'>
+                {props.post.id}
+            </div>
         </div>
     
        
