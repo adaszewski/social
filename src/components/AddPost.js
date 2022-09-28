@@ -4,28 +4,23 @@ import axios from 'axios';
 import './AddPost.css'
 
 const AddPost = (props) => {
-    const [addPost, setNewPost] = useState('');
 
-    // const [loginMessage, setLoginMessage] = useState("");
+    const [postContent, setNewPost] = useState('');
+
 
     const handleInputChange = (e) => {
-
         const target = e.target
-
-        setNewPost({
-            ...addPost,
-            content: target.value
-        })
+        setNewPost(target.value)
     }
 
-    const handleSubmit = (e) => {
-
+    const handleSubmitAddPost = (e) => {
         e.preventDefault()
         let postNew = {
-            content: addPost.content
+            content: postContent
         }
-
-        // console.log(newUser)
+        if (!postContent) {
+            return
+        }
 
         let axiosConfig = {
             "headers": {
@@ -44,6 +39,7 @@ const AddPost = (props) => {
             .then((req) => {
                 let reqData = req.data;
                 console.log(reqData);
+                props.getPrevPosts();
             })
 
             .catch((error) => {
@@ -52,12 +48,10 @@ const AddPost = (props) => {
     };
 
     return (
-        <form onSubmit={handleSubmit} >
+        <form onSubmit={handleSubmitAddPost}  >
             <h2> Dodaj nowy post </h2>
-
-
-            <textarea onChange={handleInputChange} id="content" name="content" rows="4" cols="50"> </textarea>
-                <button> Wyślij </button>
+            <textarea onChange={handleInputChange} id="content" name="content" rows="4" cols="50" value={postContent}> </textarea>
+            <button> Wyślij </button>
         </form>
 
 

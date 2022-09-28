@@ -42,9 +42,9 @@ const AppNav = (props) => {
                 {props.user && <li>
                     <Link to="/" onClick={logout}> Wyloguj się </Link>
                 </li>}
-                {props.user && <li>
+                {/* {props.user && <li>
                     <Link to="/newpost">  Dodaj post </Link>
-                </li>}
+                </li>} */}
                 {props.user && <li>
                     Jesteś zalogowany jako:<span>{props.user.username}</span> 
                 </li>}
