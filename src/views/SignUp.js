@@ -32,6 +32,8 @@ const SignUp = (props) => {
       [name]: target.value
     })
   }
+
+
   const validate = () => {
 
     let validError = {
@@ -74,15 +76,17 @@ const SignUp = (props) => {
           email: "To nie jest prawidłowy adres e-mail",
         };
       });
-    } else if (!/^[^\s]*$/.test(formData.email.trim())) {
-      validError.email = true;
-      serErrors((prevErrors) => {
-        return {
-          ...prevErrors,
-          username: "Pole nie może być puste",
-        };
-      });
-    } else {
+    }
+    // else if (!/^[^\s]*$/.test(formData.email.trim())) {
+    //   validError.email = true;
+    //   serErrors((prevErrors) => {
+    //     return {
+    //       ...prevErrors,
+    //       username: "Pole nie może być puste",
+    //     };
+    //   });
+    // } 
+    else {
       validError.email = false;
       serErrors((prevErrors) => {
         return { ...prevErrors, email: "" };
@@ -154,9 +158,9 @@ const SignUp = (props) => {
     }
 
     let newUser = {
-      username: "username",
-      email: "email",
-      password: "password"
+      username: formData.username,
+      email: formData.email,
+      password: formData.password
     }
     console.log(newUser)
 
@@ -176,8 +180,14 @@ const SignUp = (props) => {
         let reqData = req.data;
         console.log(reqData)
         if (reqData.signedup) {
-          setSignUpMessage("Konto użytkownika zostało zarejestrowane");
+          setSignUpMessage(`Konto użytkownika ${formData.username} zostało zarejestrowane`);
           setSignUpDone(true);
+          setFormData({
+            username: '',
+            email: '',
+            password: '',
+            repeatPassword: ''
+          })
         } else {
           setSignUpMessage("Coś poszło nie tak");
         }
@@ -197,24 +207,25 @@ const SignUp = (props) => {
         <h2> Formularz rejestracji nowego użytkownika</h2><br></br>
         {signUpMessage && <h2>{signUpMessage}</h2>}
 
-        <input onChange={handleInputChange} disabled={signUpDone} type="text" name="username" placeholder="Nazwa użytkownika (min. 4 znaki)" /><label> nazwa użytkownika</label><br></br>
+        <input value={formData.username} onChange={handleInputChange} disabled={signUpDone} type="text" name="username" placeholder="Nazwa użytkownika (min. 4 znaki)" /><label> nazwa użytkownika</label><br></br>
         {errors.username && <p>{errors.username}</p>}
-        <input onChange={handleInputChange} disabled={signUpDone} type="text" name="email" placeholder="Adres e-mail" /><label> adres e-mail</label><br></br>
+
+        <input value={formData.email}  onChange={handleInputChange} disabled={signUpDone} type="text" name="email" placeholder="Adres e-mail" /><label> adres e-mail</label><br></br>
         {errors.email && <p>{errors.email}</p>}
-        <input onChange={handleInputChange} disabled={signUpDone} type="password" name="password" placeholder="Hasło (min. 6 znaków)" /><label> hasło</label><br></br>
+
+        <input value={formData.password} onChange={handleInputChange} disabled={signUpDone} type="password" name="password" placeholder="Hasło (min. 6 znaków)" /><label> hasło</label><br></br>
         {errors.password && <p>{errors.password}</p>}
-        <input onChange={handleInputChange} disabled={signUpDone} type="password" name="repeatPassword" placeholder="Powtórz hasło" /><label> powtórz hasło</label><br></br>
+
+        <input value={formData.repeatPassword} onChange={handleInputChange} disabled={signUpDone} type="password" name="repeatPassword" placeholder="Powtórz hasło" /><label> powtórz hasło</label><br></br>
         {errors.repeatPassword && <p>{errors.repeatPassword}</p>}
         <button input type="submit" disabled={signUpDone} > Zarejestruj się </button>
         {signUpDone && (
           <div>
-            <Link to="/login">Przejdź do logowania</Link>
+            {<Link to="/login">Przejdź do logowania</Link>}
           </div>)}
       </form>
     </div>
   )
 }
-
-
 
 export default SignUp;
