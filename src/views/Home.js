@@ -67,7 +67,8 @@ const Home = (props) => {
 
 
         <div className="home">
-            {!props.user && props.showPopUp ? <PopUp user={props.user} setUser={props.setUser} /> : ""}
+            {!props.user && props.showPopUp ? <PopUp showPopUp={props.showPopUp} user={props.user} setUser={props.setUser} /> : ""}
+
             {props.user ? <AddPost  getPrevPosts={getPrevPosts} /> : ""}
             <div className="socialPost">
                 {posts.map((post) => {
