@@ -41,7 +41,7 @@ const App = (props) => {
 
       <AppNav user={user} setUser={setUser} />
       <AppRoutes showPopUp={showPopUp} user={user} setUser={setUser} closeClick={closeClick}   />
-      <PopUp />
+      <PopUp closeClick={closeClick} />
 
     </div>
   );
