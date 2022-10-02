@@ -4,7 +4,7 @@ import { useState, useEffect } from 'react';
 import AppNav from './components/AppNav';
 import AppRoutes from './routes/AppRoutes';
 import axios from 'axios';
-import PopUp from './views/PopUp';
+
 
 
 const App = (props) => {
@@ -41,7 +41,7 @@ const App = (props) => {
 
       <AppNav user={user} setUser={setUser} />
       <AppRoutes showPopUp={showPopUp} user={user} setUser={setUser} closeClick={closeClick}   />
-      <PopUp closeClick={closeClick} />
+     
 
     </div>
   );

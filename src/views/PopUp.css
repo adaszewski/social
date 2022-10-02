@@ -1,7 +1,22 @@
-.pop-up {
+span {
+
+    background-color: cadetblue;
+    display: inline-block;
+    text-align-last: left;
+}
+
+.close {
+    background-color: cadetblue;
     position: fixed;
     display: block;
     z-index: 199;
+    width: 60%;
+    text-align-last: left;
+}
+
+.link-sigmup {
+    background-color:cadetblue;
+    display: block;
+    z-index: 199;
     width: 80%;
-    height: 80%;
 }
