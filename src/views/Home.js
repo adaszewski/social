@@ -4,6 +4,7 @@ import axios from "axios";
 import Post from "../components/Post";
 import AddPost from "../components/AddPost";
 import PopUp from "./PopUp";
+import FollowRecommendations from "../components/FollowRecommendations";
 
 
 const Home = (props) => {
@@ -20,7 +21,7 @@ const Home = (props) => {
             })
     }
 
-   
+
     // console.log(posts)
 
     const getNextPosts = (e) => {
@@ -60,16 +61,15 @@ const Home = (props) => {
         getLatestPosts()
     }, [props.user]);
 
-    console.log(posts)
-
-
+   
     return (
 
 
         <div className="home">
-            {!props.user && props.showPopUp ? <PopUp showPopUp={props.showPopUp} user={props.user} setUser={props.setUser} closeClick={props.closeClick}/> : ""}
+            {!props.user && props.showPopUp ? <PopUp showPopUp={props.showPopUp} user={props.user} setUser={props.setUser} closeClick={props.closeClick} /> : ""}
+            {props.user ? <FollowRecommendations recommendations={props.recommendations} /> : ""}
+            {props.user ? <AddPost getPrevPosts={getPrevPosts} /> : ""}
 
-            {props.user ? <AddPost  getPrevPosts={getPrevPosts} /> : ""}
             <div className="socialPost">
                 {posts.map((post) => {
                     return <Post post={post} key={post.id} />;
