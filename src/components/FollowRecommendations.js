@@ -13,7 +13,7 @@ const FollowRecommendations = (props) => {
                 "https://akademia108.pl/api/social-app/follows/recommendations",
             )
             .then((req) => {
-                // setRecommendations(req.data);
+                setRecommendations(req.data);
                 console.log(req.data)
             })
             .catch((error) => {
@@ -36,20 +36,29 @@ const FollowRecommendations = (props) => {
             )
             .then(() => {
                 props.getLatestPosts();
+                console.log(recommendations)
             })
             .catch((error) => {
                 console.error(error);
             });
     };
+
     // console.log(follow)
 
     return (
-        <div className="followRecommendation" key={recommendations.id}>
-            <img src={recommendations.avatar_url} alt={recommendations.username} />
-            <h3>{recommendations.username}</h3>
-            <button className="btn" onClick={() => follow(recommendations.id)}> śledż </button>
+        <div>
+            {recommendations.map((recommendation) => {
+                return (
+                    <div className="recommendation" key={recommendation.id}>
+                        <img src={recommendation.avatar_url} alt={recommendation.username} />
+                        <h3>{recommendation.username}</h3>
+                        <button className="btn" onClick={() => follow(recommendation.id)}> śledż </button>
+                    </div>
+                )
+            })}
         </div>
     )
 }
+
 
 export default FollowRecommendations;
