@@ -1,29 +1,88 @@
 import './Post.css';
+import { useState } from 'react';
+import axios from 'axios';
+
 
 const Post = (props) => {
+
+    const [deletePosts, setDeletePosts] = useState(false);
+    const [likesCount, setLikesCount] = useState(props.post.likes.length)
+    const [doesUserLiked, setDoesUserLiked] = useState(props.post.likes.filter((like) =>
+        like.username === props.user?.username
+    ).length !== 0
+    )
+
+    const liked = (id, isLiked) => {
+        axios
+            .post('https://akademia108.pl/api/social-app/post/' +
+                (isLiked ? 'dislike' : 'like'),
+                { post_id: id }
+            )
+            .then(() => {
+                setLikesCount(likesCount + (isLiked ? -1 : 1))
+                setDoesUserLiked(!isLiked)
+            })
+
+            .catch(() => {
+
+            })
+    }
+    const deletePost = (id) => {
+        axios
+            .post("https://akademia108.pl/api/social-app/post/delete",
+                { post_id: id }
+            )
+            .then((req) => {
+                setDeletePosts(true)
+                props.setPosts((posts) => {
+                    return posts.filter((post) => post.id !== req.data.post_id);
+                });
+            })
+            .catch((error) => {
+                console.error(error);
+            });
+    };
+
+
+
     return (
         <div className="post">
-            
-            <div className="avatar">
-                <img src={props.post.user.avatar_url} alt="{props.post.user.username}"></img>
-            </div>
+            <container>
+                <div className="avatar">
+                    <img src={props.post.user.avatar_url} alt={props.post.user.username} />
+                </div>
+                <div className="user">
+                    <h3>{props.post.user.username}</h3>
+                </div>
+                <div className='unfollow'>
+                    <button className="btn-unfol"  >przestań śledzić   </button>
+                </div>
 
-            <div className="user">
-                {props.post.user.username}
-            </div>
+            </container>
 
             <div className="content">
                 <p>
                     {props.post.content}
                 </p>
             </div>
+            <container>
+                <div className='date'>
+                    opublikowano: {props.post.created_at.substring(0, 10)}
+                </div>
+                <div className='like'>
+                    polubiono: {props.post.likes.lenght}
+                </div>
+            </container>
 
-            <div className='date'>
-                {props.post.id}
-            </div>
+            {props.user && (<button className="btn-like" onClick={() => liked(props.post.id, doesUserLiked)} > {doesUserLiked ? "przestań lubić" : "polub"} </button>)}
+            {likesCount}
+
+            {props.user && (<button className="btn-yes" onClick={() => deletePost(props.post.id)}> Usuń post </button>)}
+            {deletePost}
+            
         </div>
-    
-       
+
+
     )
 }
 

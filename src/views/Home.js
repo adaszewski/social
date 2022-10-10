@@ -15,6 +15,7 @@ const Home = (props) => {
         axios.post("https://akademia108.pl/api/social-app/post/latest")
             .then((req) => {
                 setPosts(req.data);
+                console.log(req.data)
             })
             .catch((error) => {
                 console.error(error);
@@ -22,7 +23,6 @@ const Home = (props) => {
     }
 
 
-    // console.log(posts)
 
     const getNextPosts = (e) => {
 
@@ -67,12 +67,12 @@ const Home = (props) => {
 
         <div className="home">
             {!props.user && props.showPopUp ? <PopUp showPopUp={props.showPopUp} user={props.user} setUser={props.setUser} closeClick={props.closeClick} /> : ""}
-            {props.user ? <FollowRecommendations recommendations={props.recommendations} /> : ""}
-            {props.user ? <AddPost getPrevPosts={getPrevPosts} /> : ""}
+            {/* {props.user && <FollowRecommendations user={props.user} getLatestPosts={getLatestPosts} posts={posts}  /> } */}
+            {props.user && <AddPost getPrevPosts={getPrevPosts} />}
 
             <div className="socialPost">
                 {posts.map((post) => {
-                    return <Post post={post} key={post.id} />;
+                    return <Post post={post} key={post.id}user={props.user}/>;
                 })}
 
                 <button onClick={getNextPosts}> Załaduj więcej postów</button>

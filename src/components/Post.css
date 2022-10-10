@@ -1,39 +1,52 @@
+.post {
+    display: flex;
+    border: 1px solid black;
+    margin: 5px 0;
+    border-radius: 5px;
+}
+
+.post > * {
+    padding: 2px;
+}
+
+
 img {
     margin-top: 10px;
     width: 70px;
     height: 70px;
-    display: flex;
-    align-self: flex-start
 }
 
 
 
 .user {
     color: blue;
-    margin-left:5px;
+    margin-left: 5px;
     margin-bottom: 5px;
     padding: 5px;
     font-size: 22px;
     display: flex;
-    text-align-last: right;
+    text-align: left;
     align-self: flex-start;
     color: blanchedalmond;
 }
 
 .content {
     margin-left: 5%;
+    width: 100%;
 
 }
 
 .post {
-    border-style: dotted;
-    margin-bottom: 35px;
+    border: 2px solid;
+    /* margin-bottom: 35px; */
     width: 70%;
     align-items: center;
     display: flex;
     padding: 10px;
     background-color: blue;
     color: beige;
+    justify-content: space-between;
+    margin: 5px 0;
 }
 
 .post:hover {
@@ -41,5 +54,23 @@ img {
 }
 
 .date {
-    text-align-last: left;
+    text-align: left;
+    padding: 5px;
+}
+
+.btn-like {
+    display: inline-block;
+    background-color:coral;
+    border-radius: 10px;
+    border: 2px #cccccc;
+    color: firebrick;
+    font-size: 10px;
+    padding: 20px;
+    width: 200px;
+    transition: all 0.5s;
+    cursor: pointer;
+    margin-top: 4px;
+    margin-bottom: 4px;
+    margin-left: 10%;
+    text-align-last: center;
 }

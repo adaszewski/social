@@ -40,8 +40,8 @@ const App = (props) => {
     <div className="App">
 
       <AppNav user={user} setUser={setUser} />
-      <AppRoutes showPopUp={showPopUp} user={user} setUser={setUser} closeClick={closeClick}   />
-     
+      <AppRoutes showPopUp={showPopUp} user={user} setUser={setUser} closeClick={closeClick} />
+
 
     </div>
   );
