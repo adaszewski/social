@@ -35,6 +35,7 @@ const Post = (props) => {
                 props.setPosts((posts) => {
                     return posts.filter((post) => (post.id !== req.data.post_id))
                 })
+            
             })
             .catch((error) => {
                 console.error(error);
@@ -89,8 +90,8 @@ const Post = (props) => {
             {props.user && (<button className="btn-like" onClick={() => liked(props.post.id, doesUserLiked)} > {doesUserLiked ? "przestań lubić" : "polub"} </button>)}
             {likesCount}
 
-            {props.user && (<button className="btn-yes" onClick={() => deletePost(props.post.id)}> Usuń post </button>)}
-            {deletePost}
+            {props.post.user.username === props.user?.username && (<button className="btn-del" onClick={() => deletePost(props.post.id)} >  Usuń post </button>)}
+            
 
         </div>
 

@@ -72,7 +72,7 @@ const Home = (props) => {
 
             <div className="socialPost">
                 {posts.map((post) => {
-                    return <Post post={post} key={post.id}user={props.user} getLatestPosts={getLatestPosts}/>;
+                        return <Post post={post} setPosts={setPosts} key={post.id} user={props.user} />;
                 })}
 
                 <button onClick={getNextPosts}> Załaduj więcej postów</button>
