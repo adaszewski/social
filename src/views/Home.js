@@ -67,12 +67,12 @@ const Home = (props) => {
 
         <div className="home">
             {!props.user && props.showPopUp ? <PopUp showPopUp={props.showPopUp} user={props.user} setUser={props.setUser} closeClick={props.closeClick} /> : ""}
-            {/* {props.user && <FollowRecommendations user={props.user} getLatestPosts={getLatestPosts} posts={posts}  /> } */}
+            {props.user && <FollowRecommendations user={props.user} getLatestPosts={getLatestPosts} posts={posts}  /> }
             {props.user && <AddPost getPrevPosts={getPrevPosts} />}
 
             <div className="socialPost">
                 {posts.map((post) => {
-                    return <Post post={post} key={post.id}user={props.user}/>;
+                    return <Post post={post} key={post.id}user={props.user} getLatestPosts={getLatestPosts}/>;
                 })}
 
                 <button onClick={getNextPosts}> Załaduj więcej postów</button>

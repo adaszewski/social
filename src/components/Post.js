@@ -5,7 +5,7 @@ import axios from 'axios';
 
 const Post = (props) => {
 
-    const [deletePosts, setDeletePosts] = useState(false);
+    // const [deletePosts, setDeletePosts] = useState(false);
     const [likesCount, setLikesCount] = useState(props.post.likes.length)
     const [doesUserLiked, setDoesUserLiked] = useState(props.post.likes.filter((like) =>
         like.username === props.user?.username
@@ -33,15 +33,33 @@ const Post = (props) => {
                 { post_id: id }
             )
             .then((req) => {
-                setDeletePosts(true)
-                props.setPosts((posts) => {
-                    return posts.filter((post) => post.id !== req.data.post_id);
-                });
+                // props.setPosts((posts) => {
+                //     return posts.filter((post) => {
+                //         post.id !== req.data.post_id
+                //     })
+                // }
+
+                // )
+                // console.log(deletePost)
             })
             .catch((error) => {
                 console.error(error);
             });
     };
+
+    const unFollow = (id) => {
+        axios
+            .post("https://akademia108.pl/api/social-app/follows/disfollow",
+                { leader_id: id }
+            )
+            .then(() => {
+                props.getLatestPosts()
+            })
+            .catch((error) => {
+                console.error(error);
+            });
+
+    }
 
 
 
@@ -55,7 +73,7 @@ const Post = (props) => {
                     <h3>{props.post.user.username}</h3>
                 </div>
                 <div className='unfollow'>
-                    <button className="btn-unfol"  >przestań śledzić   </button>
+                    <button className="btn-unfol" onClick={( ) => {unFollow(props.post.user.id)}}  >przestań śledzić   </button>
                 </div>
 
             </container>
@@ -79,7 +97,7 @@ const Post = (props) => {
 
             {props.user && (<button className="btn-yes" onClick={() => deletePost(props.post.id)}> Usuń post </button>)}
             {deletePost}
-            
+
         </div>
 
 
