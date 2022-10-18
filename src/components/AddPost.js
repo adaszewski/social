@@ -49,9 +49,9 @@ const AddPost = (props) => {
 
     return (
         <form onSubmit={handleSubmitAddPost}  >
-            <h2> Dodaj nowy post </h2>
+            <p> Dodaj nowy post </p>
             <textarea onChange={handleInputChange} id="content" name="content" rows="4" cols="50" value={postContent}> </textarea>
-            <button> Wyślij </button>
+            <button className='add-btn'> Wyślij </button>
         </form>
 
 

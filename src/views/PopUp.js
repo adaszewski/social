@@ -8,18 +8,21 @@ const PopUp = (props) => {
 
 
     return (
-        <div className="pop-up"  >
+        <container className="pop-up"  >
             <div className="close">
-                <span onClick={props.closeClick} > zamknij </span>
+                <div className="close-box">
+                <button className="btn-close" onClick={props.closeClick} > X </button>
             </div>
             <LoginForm user={props.user} setUser={props.setUser} onClick={props.closeClick} setShowPopUp={props.setShowPopUp} showPopUp={props.showPopUp} />
-            <div>
-                <div className="link-sigmup">
-                    {<Link to="/signup" showPopUp={props.showPopUp}> Jeśli nie masz konto zarejestruj </Link>}
-                </div>
-            </div>
 
+            {<Link to="/signup" showPopUp={props.showPopUp}> <button className="link-signup"> Jeśli nie masz konta zarejestruj się</button> </Link>}
         </div>
+
+
+
+
+
+        </container >
     )
 }
 

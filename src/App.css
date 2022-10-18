@@ -1,6 +1,15 @@
-* {
-  box-sizing: border-box;
-  
+button {
+  width: 100px;
+    border-radius: 10px;
+    background-color: black;
+    color: blanchedalmond;
+}
+
+button:hover {
+  width: 150px;
+    border-radius: 10px;
+    background-color: white;
+    color: red;
 }
 
 body {
@@ -12,78 +21,6 @@ body {
   margin-left: 10%;
 }
 
-.App h2 {
-  text-align: center;
-  margin-left: 0;
-}
-
-.App nav {
-  margin: 0;
-  padding: 0;
-  width: 100%;
-  padding: 0;
-  list-style: none;
-}
-
-.App nav li {
-  display: inline-block;
-  box-sizing: border-box;
-  margin-top: 2px;
-  margin-bottom: 5px;
-  padding: 30px;
-  height: 50px;
-  width: 200px;
-  text-align: center;
-  padding: 10px;
-}
-
-
-.App nav li a:link {
-  float: left;
-  font-size: 1.2em;
-  width: 130px;
-  text-decoration: none;
-  padding: 10px 15px;
-  margin: 0px 1px 1px 0px;
-  border: 1px solid navy;
-  border-radius: 3px;
-  -moz-border-radius: 5px;
-  -webkit-border-radius: 5px;
-
-}
-
-.App nav li a:link:hover {
-
-  text-align: start;
-  font-size: 1.6em;
-  width: 180px;
-
-}
-
-.App nav li a {
-  background-color: gray;
-  color: antiquewhite;
-  position: relative;
-  display: inline;
-  width: 90%;
-}
-
-.App nav li a:hover {
-  color: red;
-  font-style: bold;
-  cursor: pointer;
-}
-
-.App-header {
-  background-color: #282c34;
-  min-height: 100vh;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  font-size: calc(10px + 2vmin);
-  color: white;
-}
 
 .App input {
   height: 30px;
@@ -104,22 +41,4 @@ body {
   color: darkolivegreen;
   display: inline-block;
   padding-left: 10px;
-}
-
-.App button {
-  display: inline-block;
-  background-color: cadetblue;
-  border-radius: 10px;
-  border: 2px #cccccc;
-  color: #eeeeee;
-  font-size: 16px;
-  padding: 20px;
-  width: 100px;
-  transition: all 0.5s;
-  cursor: pointer;
-  margin-top: 4px;
-  margin-bottom: 4px;
-  margin-left: 10%;
-  text-align-last: center;
-
 }

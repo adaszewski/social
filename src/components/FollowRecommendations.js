@@ -46,10 +46,13 @@ const FollowRecommendations = (props) => {
     // console.log(follow)
 
     return (
-        <div>
+        <div className="box-recommendation">
+       <h4> Polecamy do śledzenia</h4> <br>
+       </br>
             {recommendations.map((recommendation) => {
                 return (
                     <div className="recommendation" key={recommendation.id}>
+                        
                         <img src={recommendation.avatar_url} alt={recommendation.username} />
                         <h3>{recommendation.username}</h3>
                         <button className="btn" onClick={() => follow(recommendation.id)}> śledż </button>

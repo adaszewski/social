@@ -35,7 +35,7 @@ const Post = (props) => {
                 props.setPosts((posts) => {
                     return posts.filter((post) => (post.id !== req.data.post_id))
                 })
-            
+
             })
             .catch((error) => {
                 console.error(error);
@@ -56,21 +56,18 @@ const Post = (props) => {
 
     }
 
-
-
     return (
         <div className="post">
-            <container>
+            <container className="author">
                 <div className="avatar">
                     <img src={props.post.user.avatar_url} alt={props.post.user.username} />
                 </div>
                 <div className="user">
-                    <h3>{props.post.user.username}</h3>
+                    <p>{props.post.user.username}</p>
                 </div>
                 <div className='unfollow'>
                     <button className="btn-unfol" onClick={() => { unFollow(props.post.user.id) }}  >przestań śledzić   </button>
                 </div>
-
             </container>
 
             <div className="content">
@@ -78,22 +75,22 @@ const Post = (props) => {
                     {props.post.content}
                 </p>
             </div>
-            <container>
+            <container className="footer">
                 <div className='date'>
-                    opublikowano: {props.post.created_at.substring(0, 10)}
+                   <h7> opublikowano: {props.post.created_at.substring(0, 10)} </h7>
                 </div>
                 <div className='like'>
-                    polubiono: {props.post.likes.lenght}
+                  <h7>  polubiono: {props.post.likes.lenght}  {likesCount} </h7>
                 </div>
+         
+                {props.user && (<button className="btn-like" onClick={() => liked(props.post.id, doesUserLiked)} > {doesUserLiked ? "przestań lubić" : "polub"} </button>)}
+              
+
+                {props.post.user.username === props.user?.username && (<button className="btn-del" onClick={() => deletePost(props.post.id)} >  Usuń post </button>)}
             </container>
-
-            {props.user && (<button className="btn-like" onClick={() => liked(props.post.id, doesUserLiked)} > {doesUserLiked ? "przestań lubić" : "polub"} </button>)}
-            {likesCount}
-
-            {props.post.user.username === props.user?.username && (<button className="btn-del" onClick={() => deletePost(props.post.id)} >  Usuń post </button>)}
-            
-
         </div>
+
+
 
 
     )

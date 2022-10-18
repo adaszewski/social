@@ -1,0 +1,36 @@
+.box-recommendation {
+    display: flex;
+    background-color: cadetblue;
+    border: 1px solid pink;
+    max-width: 60%;
+    margin: auto;
+    padding: 5px;
+    border-radius: 20px;
+}
+
+.recommendation {
+    width: 33%;
+    padding: 15px;
+    justify-content: center;
+}
+
+img {
+    height: 90px;
+    width: 90px;
+    border-radius: 10px;
+}
+
+h4 {
+    width: 70%;
+}
+
+.recomendation btn {
+    color: blueviolet;
+}
+
+.btn {
+    width: 100px;
+    border-radius: 10px;
+    background-color: black;
+    color: blanchedalmond;
+}
